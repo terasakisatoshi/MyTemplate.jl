@@ -8,17 +8,18 @@ build:
 	-rm -f Manifest.toml
 	docker build -t ${DOCKER_IMAGE} .
 	docker-compose build
-	docker-compose run --rm julia julia -J ${SYSIMAGE} --project=/work -e 'using Pkg; Pkg.instantiate()'
+	docker-compose run --rm julia julia --project=/work -e 'using Pkg; Pkg.instantiate()'
 
 # Excecute in docker container
 web: docs
 	julia --project=docs -e '\
 		using Pkg;\
+		Pkg.add("LiveServer");\
 		Pkg.develop(PackageSpec(path=pwd()));\
 		Pkg.instantiate();\
 		include("docs/make.jl");\
 		'
-	python3 -m http.server --bind 0.0.0.0 --directory docs/build
+	julia --project=docs -e 'using LiveServer; serve(dir="docs/build", host="0.0.0.0")'
 
 test: build
 	docker-compose run --rm julia julia -e 'using Pkg; Pkg.activate("."); Pkg.test()'

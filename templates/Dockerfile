@@ -109,13 +109,11 @@ ENV["PYTHON"]=Sys.which("python3")\n\
 ENV["JUPYTER"]=Sys.which("jupyter")\n\
 ' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
 
+RUN julia -e 'using Pkg; Pkg.add("LiveServer")'
 RUN julia -e '\
               using Pkg; \
-              Pkg.add(PackageSpec(name="IJulia",version="1.23.2")); \
-              Pkg.add(PackageSpec(name="Interact", version="0.10.3")); \
-              Pkg.add(PackageSpec(name="WebIO", version="0.8.16")); \
-              Pkg.pin(["IJulia", "Interact", "WebIO"]); \
-              using IJulia, WebIO; \
+              Pkg.add("IJulia"); \
+              using IJulia; \
               installkernel("Julia");\
               ' && \
     echo "Done"
@@ -141,3 +139,5 @@ julia -e 'using InteractiveUtils; versioninfo()'
 
 WORKDIR ${HOME}
 USER ${USER}
+
+CMD ["julia"]
