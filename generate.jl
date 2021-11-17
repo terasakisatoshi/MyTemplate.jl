@@ -30,4 +30,3 @@ t = Template(;
     ]
 )
 
-t("Azarashi")
