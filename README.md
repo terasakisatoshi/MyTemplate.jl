@@ -1,6 +1,6 @@
 # MyTemplate.jl
 
-- MyTemplate.jl = PkgTemplates.jl + myplugins.jl
+- MyTemplate.jl = [PkgTemplates.jl](https://github.com/invenia/PkgTemplates.jl) + myplugins.jl to mimic [MyWorkflow.jl](https://github.com/terasakisatoshi/MyWorkflow.jl)
 
 # Usage
 
@@ -25,3 +25,8 @@ $ docker-compose up lab # initialize JupyterLab
 $ docker-compose up web # initialize docs
 $ make clean # clean your workspace
 ```
+
+# Appendix
+
+- [MyWorkflow.jl](https://github.com/terasakisatoshi/MyWorkflow.jl)
+- [binder_docker_playground](https://github.com/terasakisatoshi/binder_docker_playground)
