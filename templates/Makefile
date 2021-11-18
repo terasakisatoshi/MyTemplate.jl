@@ -18,8 +18,8 @@ web: docs
 		Pkg.develop(PackageSpec(path=pwd()));\
 		Pkg.instantiate();\
 		include("docs/make.jl");\
+		using LiveServer; servedocs(host="0.0.0.0");\
 		'
-	julia --project=docs -e 'using LiveServer; serve(dir="docs/build", host="0.0.0.0")'
 
 test: build
 	docker-compose run --rm julia julia -e 'using Pkg; Pkg.activate("."); Pkg.test()'

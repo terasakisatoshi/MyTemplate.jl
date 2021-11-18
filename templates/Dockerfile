@@ -139,5 +139,6 @@ julia -e 'using InteractiveUtils; versioninfo()'
 
 WORKDIR ${HOME}
 USER ${USER}
+EXPOSE 8000
 
 CMD ["julia"]
