@@ -151,5 +151,7 @@ julia -e 'using InteractiveUtils; versioninfo()'
 
 USER ${USER}
 EXPOSE 8000
+EXPOSE 8888
+EXPOSE 1234
 
 CMD ["julia"]

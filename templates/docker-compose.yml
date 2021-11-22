@@ -41,5 +41,5 @@ services:
       - ./:/work
     working_dir: /work
     ports:
-      - "9999:9999"
+      - "1234:1234"
     command: julia -e 'import Pluto; Pluto.run(host="0.0.0.0", port=9999)'
