@@ -25,3 +25,4 @@ $ make clean # clean your workspace
 
 - [MyWorkflow.jl](https://github.com/terasakisatoshi/MyWorkflow.jl)
 - [binder_docker_playground](https://github.com/terasakisatoshi/binder_docker_playground)
+- [MyVSCodeWorkspace.jl](https://github.com/terasakisatoshi/MyVSCodeWorkspace.jl)
