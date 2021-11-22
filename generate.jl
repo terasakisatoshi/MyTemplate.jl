@@ -72,7 +72,7 @@ function main()
         pkgname *= ".jl"
     end
     if parsed_args["with-jupyter"]
-        t_jupyter(pkgname)
+        t_with_jupyter(pkgname)
     else
         t(pkgname)
     end
