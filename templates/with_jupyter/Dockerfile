@@ -119,7 +119,7 @@ ENV["PYTHON"]=Sys.which("python3")\n\
 ENV["JUPYTER"]=Sys.which("jupyter")\n\
 ' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
 
-RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer"])'
+RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI"])'
 RUN julia -e '\
               using Pkg; \
               Pkg.add("IJulia"); \

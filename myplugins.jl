@@ -84,7 +84,7 @@ end
 
 source(p::DockerCompose) = p.file
 destination(p::DockerCompose) = p.destination
-view(::DockerCompose, ::Template, pkg::AbstractString) = Dict("DOCKER_IMAGE" => lowercase(pkg)*"jl")
+view(::DockerCompose, ::Template, pkg::AbstractString) = Dict("DOCKER_IMAGE" => lowercase(pkg)*"jl", "PKG" =>pkg)
 
 # ---
 

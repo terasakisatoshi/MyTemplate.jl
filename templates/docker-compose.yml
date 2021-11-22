@@ -1,45 +1,18 @@
 version: '3'
 services:
-  jupyter:
-    image: {{DOCKER_IMAGE}}
-    container_name: {{DOCKER_IMAGE}}-jupyter
-    volumes:
-      - ./:/work
-    working_dir: /work
-    ports:
-      - "8888:8888"
-    command: jupyter notebook --notebook-dir /work --ip=0.0.0.0 --allow-root
-  lab:
-    image: {{DOCKER_IMAGE}}
-    container_name: {{DOCKER_IMAGE}}-lab
-    volumes:
-      - ./:/work
-    working_dir: /work
-    ports:
-      - "8888:8888"
-    command: jupyter lab --notebook-dir /work --ip=0.0.0.0 --allow-root
   julia:
     image: {{DOCKER_IMAGE}}
     container_name: {{DOCKER_IMAGE}}-julia
     volumes:
-      - ./:/work
-    working_dir: /work
-    command: julia -J /sysimages/ijulia.so --project=/work
+      - ./:/workspace/{{{PKG}}}.jl
+    working_dir: /workspace/{{{PKG}}}.jl
+    command: julia --project=/workspace/{{{PKG}}}.jl
   web:
     image: {{DOCKER_IMAGE}}
     container_name: {{DOCKER_IMAGE}}-packagedocs
     volumes:
-      - ./:/work
-    working_dir: /work
+      - ./:/workspace/{{{PKG}}}.jl
+    working_dir: /workspace/{{{PKG}}}.jl
     ports:
       - "8000:8000"
     command: make web
-  pluto:
-    image: {{DOCKER_IMAGE}}
-    container_name: {{DOCKER_IMAGE}}-pluto
-    volumes:
-      - ./:/work
-    working_dir: /work
-    ports:
-      - "1234:1234"
-    command: julia -e 'import Pluto; Pluto.run(host="0.0.0.0", port=9999)'
