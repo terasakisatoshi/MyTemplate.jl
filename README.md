@@ -8,7 +8,8 @@
 
 ```console
 $ cd /path/to/this/repository
-$ julia generate.jl YourPkg # YourPkg.jl is created
+$ julia generate.jl YourPkg # YourPkg.jl is generated
+$ julia generate.jl YourPkg --with-jupyter # YourPkg.jl with Jupyter/Pluto.jl environment template is generated
 ```
 
 - Once you have done the instruction above, you can develop your Julia project.
@@ -17,6 +18,7 @@ $ julia generate.jl YourPkg # YourPkg.jl is created
 $ cd YourPkg.jl
 $ make # build a Docker image from Dockerfile
 $ make test # test YourPkg.jl
+$ docker-compose up lab # --with-jupyter only
 $ docker-compose up web # initialize docs
 $ make clean # clean your workspace
 ```
@@ -25,3 +27,4 @@ $ make clean # clean your workspace
 
 - [MyWorkflow.jl](https://github.com/terasakisatoshi/MyWorkflow.jl)
 - [binder_docker_playground](https://github.com/terasakisatoshi/binder_docker_playground)
+- [MyVSCodeWorkspace.jl](https://github.com/terasakisatoshi/MyVSCodeWorkspace.jl)
