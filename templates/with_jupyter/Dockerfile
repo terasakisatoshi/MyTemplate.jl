@@ -14,7 +14,7 @@ RUN adduser --disabled-password \
 USER root
 
 RUN apt-get update && \
-    apt-get install -y \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     python3 \
     python3-dev \
@@ -27,7 +27,7 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
 
 # Dependencies for development
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     htop \
     nano \
     openssh-server \
