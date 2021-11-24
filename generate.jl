@@ -23,7 +23,7 @@ t_with_jupyter = Template(;
             ]
         ),
         Dockerfile(with_jupyter = true),
-        DockerCompose(),
+        DockerCompose(with_jupyter=true),
         Makefile(),
         DevContainer(),
         Jupytext(),
