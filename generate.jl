@@ -29,6 +29,7 @@ t_with_jupyter = Template(;
         Jupytext(),
         PlaygroundNotebook(),
         PlaygroundPluto(),
+        VSCodeExtensions(),
     ]
 )
 
@@ -53,6 +54,7 @@ t = Template(;
         DockerCompose(with_jupyter=false),
         Makefile(),
         DevContainer(),
+        VSCodeExtensions(),
     ]
 )
 

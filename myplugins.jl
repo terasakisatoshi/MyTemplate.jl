@@ -96,3 +96,13 @@ end
 source(p::Makefile) = p.file
 destination(p::Makefile) = p.destination
 view(::Makefile, ::Template, pkg::AbstractString) = Dict("DOCKER_IMAGE" => lowercase(pkg)*"jl")
+
+# ---
+
+Base.@kwdef struct VSCodeExtensions <: FilePlugin
+    file::String = "templates/dot_vscode/extensions.json"
+    destination::String = ".vscode/extensions.json"
+end
+
+source(p::VSCodeExtensions) = p.file
+destination(p::VSCodeExtensions) = p.destination
