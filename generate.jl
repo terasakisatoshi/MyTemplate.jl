@@ -12,7 +12,7 @@ t_with_jupyter = Template(;
         License(; name = "MIT"),
         Git(; manifest = false, ssh = true),
         GitHubActions(;
-            extra_versions = ["1.0", "1.6", "nightly"]
+            extra_versions = ["1.6", "1.7", "nightly"]
         ),
         Documenter{GitHubActions}(),
         Readme(;
@@ -40,7 +40,7 @@ t = Template(;
         License(; name = "MIT"),
         Git(; manifest = false, ssh = true),
         GitHubActions(;
-            extra_versions = ["1.0", "1.6", "nightly"]
+            extra_versions = ["1.6", "1.7", "nightly"]
         ),
         Documenter{GitHubActions}(),
         Readme(;
