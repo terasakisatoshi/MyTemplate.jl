@@ -3,20 +3,21 @@ using PkgTemplates: FilePlugin, Template
 import PkgTemplates: source, destination, view
 
 struct Dockerfile <: FilePlugin
+    tag::String
     file::String
     destination::String
-    function Dockerfile(;with_jupyter=false)
+    function Dockerfile(;tag=string(VERSION), with_jupyter=false)
         if with_jupyter
-            new(joinpath("templates", "with_jupyter", "Dockerfile"), "Dockerfile")
+            new(tag, joinpath("templates", "with_jupyter", "Dockerfile"), "Dockerfile")
         else
-            new(joinpath("templates", "Dockerfile"), "Dockerfile")
+            new(tag, joinpath("templates", "Dockerfile"), "Dockerfile")
         end
     end
 end
 
 source(p::Dockerfile) = p.file
 destination(p::Dockerfile) = p.destination
-view(::Dockerfile, ::Template, pkg::AbstractString) = Dict("PKG" => pkg)
+view(f::Dockerfile, ::Template, pkg::AbstractString) = Dict("PKG" => pkg, "tag" => f.tag)
 
 # ---
 
