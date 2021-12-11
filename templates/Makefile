@@ -5,7 +5,7 @@ DOCKER_IMAGE={{DOCKER_IMAGE}}
 all: build
 
 build:
-	-rm -f Manifest.toml
+	-rm -f Manifest.toml docs/Manifest.toml
 	docker build -t ${DOCKER_IMAGE} .
 	docker-compose build
 	docker-compose run --rm julia julia --project=@. -e 'using Pkg; Pkg.instantiate()'
