@@ -10,7 +10,7 @@ t_with_jupyter = Template(;
     julia = v"1",
     plugins = [
         License(; name = "MIT"),
-        Git(; 
+        Git(;
             ignore = [
                 "docs/build/",
                 "docs/site/",
@@ -19,7 +19,7 @@ t_with_jupyter = Template(;
                 "*.gif",
                 ".DS_Store",
             ],
-            manifest = false, 
+            manifest = false,
             ssh = true
         ),
         GitHubActions(;
@@ -34,7 +34,7 @@ t_with_jupyter = Template(;
             ]
         ),
         Dockerfile(with_jupyter = true),
-        DockerCompose(with_jupyter=true),
+        DockerCompose(with_jupyter = true),
         Makefile(),
         DevContainer(),
         Jupytext(),
@@ -49,7 +49,7 @@ t = Template(;
     julia = v"1",
     plugins = [
         License(; name = "MIT"),
-        Git(; 
+        Git(;
             ignore = [
                 "docs/build/",
                 "docs/site/",
@@ -71,7 +71,7 @@ t = Template(;
             ]
         ),
         Dockerfile(with_jupyter = false),
-        DockerCompose(with_jupyter=false),
+        DockerCompose(with_jupyter = false),
         Makefile(),
         DevContainer(),
         VSCodeExtensions(),
@@ -82,11 +82,11 @@ function main()
     s = ArgParseSettings()
     @add_arg_table! s begin
         "pkgname"
-            help = "Pkg name"
-            required = true
+        help = "Pkg name"
+        required = true
         "--with-jupyter"
-            help = "create template for Jupyter workflow"
-            action = :store_true
+        help = "create template for Jupyter workflow"
+        action = :store_true
     end
     parsed_args = parse_args(ARGS, s)
     pkgname = parsed_args["pkgname"]
