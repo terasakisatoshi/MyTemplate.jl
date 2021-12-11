@@ -10,7 +10,18 @@ t_with_jupyter = Template(;
     julia = v"1",
     plugins = [
         License(; name = "MIT"),
-        Git(; manifest = false, ssh = true),
+        Git(; 
+            ignore = [
+                "docs/build/",
+                "docs/site/",
+                ".ipynb_checkpoints",
+                "*.ipynb",
+                "*.gif",
+                ".DS_Store",
+            ],
+            manifest = false, 
+            ssh = true
+        ),
         GitHubActions(;
             extra_versions = ["1.6", "1.7", "nightly"]
         ),
@@ -38,7 +49,16 @@ t = Template(;
     julia = v"1",
     plugins = [
         License(; name = "MIT"),
-        Git(; manifest = false, ssh = true),
+        Git(; 
+            ignore = [
+                "docs/build/",
+                "docs/site/",
+                #".ipynb_checkpoints",
+                #"*.ipynb",
+                "*.gif",
+                ".DS_Store",
+            ],
+            manifest = false, ssh = true),
         GitHubActions(;
             extra_versions = ["1.6", "1.7", "nightly"]
         ),
