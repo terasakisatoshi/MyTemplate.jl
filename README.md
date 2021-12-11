@@ -4,12 +4,23 @@
 
 # Usage
 
+## Setup `github.user`
+
+- To run PkgTemplate.jl correctly, you should do (only once):
+
+```console
+$ git config --global github.user <your-github-account>
+```
+
+## Run `generate.jl`
+
 - If you want to create a Julia package named "YourPkg", here is what you should do:
 
 ```console
 $ cd /path/to/this/repository
-$ julia generate.jl YourPkg # YourPkg.jl is generated
-$ julia generate.jl YourPkg --with-jupyter # YourPkg.jl with Jupyter/Pluto.jl environment template is generated
+$ julia --project=@. -e 'using Pkg; Pkg.instantiate()'
+$ julia --project=@. generate.jl YourPkg # YourPkg.jl is generated
+$ julia --project=@. generate.jl YourPkg --with-jupyter # YourPkg.jl with Jupyter/Pluto.jl environment template is generated
 ```
 
 - Once you have done the instruction above, you can develop your Julia project.
