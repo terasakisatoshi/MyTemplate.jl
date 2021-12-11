@@ -5,7 +5,7 @@ DOCKER_IMAGE={{DOCKER_IMAGE}}
 all: build
 
 build:
-	-rm -f Manifest.toml
+	-rm -f Manifest.toml docs/Manifest.toml
 	docker build -t ${DOCKER_IMAGE} .
 	docker-compose build
 	docker-compose run --rm julia julia --project=@. -e 'using Pkg; Pkg.instantiate()'
@@ -23,8 +23,9 @@ test: build
 
 clean:
 	docker-compose down
-	-rm -f playground/notebook/*.ipynb
-	-rm -rf playground/notebook/*.gif
-	-rm -rf playground/notebook/*.png
+	-find $(CURDIR) -name "*.ipynb" -type f -delete
+	-find $(CURDIR) -name "*.html" -type f -delete
+	-find $(CURDIR) -name "*.gif" -type f -delete
+	-find $(CURDIR) -name "*.ipynb_checkpoints" -type d -exec rm -rf "{}" +
 	-rm -f  Manifest.toml docs/Manifest.toml
 	-rm -rf docs/build
