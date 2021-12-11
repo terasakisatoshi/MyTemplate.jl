@@ -116,18 +116,18 @@ USER ${NB_USER}
 
 RUN mkdir -p ${HOME}/.julia/config && \
     echo '\
-# set environment variables\n\
-ENV["PYTHON"]=Sys.which("python3")\n\
-ENV["JUPYTER"]=Sys.which("jupyter")\n\
-' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
+    # set environment variables\n\
+    ENV["PYTHON"]=Sys.which("python3")\n\
+    ENV["JUPYTER"]=Sys.which("jupyter")\n\
+    ' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
 
 RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI"])'
 RUN julia -e '\
-              using Pkg; \
-              Pkg.add("IJulia"); \
-              using IJulia; \
-              installkernel("Julia");\
-              ' && \
+    using Pkg; \
+    Pkg.add("IJulia"); \
+    using IJulia; \
+    installkernel("Julia");\
+    ' && \
     echo "Done"
 
 ENV JULIA_PROJECT "@."
@@ -146,10 +146,10 @@ RUN chown -R ${NB_UID} /workspace/{{{PKG}}}.jl
 USER ${USER}
 
 RUN rm -f Manifest.toml && julia -e 'using Pkg; \
-Pkg.instantiate(); \
-Pkg.precompile()' && \
-# Check Julia version \
-julia -e 'using InteractiveUtils; versioninfo()'
+    Pkg.instantiate(); \
+    Pkg.precompile()' && \
+    # Check Julia version \
+    julia -e 'using InteractiveUtils; versioninfo()'
 
 USER ${USER}
 EXPOSE 8000
