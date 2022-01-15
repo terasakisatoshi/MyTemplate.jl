@@ -1,4 +1,4 @@
-# MyTemplate.jl
+# [MyTemplate.jl](https://github.com/terasakisatoshi/MyTemplate.jl)
 
 - MyTemplate.jl = [PkgTemplates.jl](https://github.com/invenia/PkgTemplates.jl) + myplugins.jl to mimic [MyWorkflow.jl](https://github.com/terasakisatoshi/MyWorkflow.jl)
 
