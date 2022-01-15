@@ -59,6 +59,7 @@ RUN curl -kL https://bootstrap.pypa.io/get-pip.py | python3 && \
     git+https://github.com/IllumiDesk/jupyter-pluto-proxy.git \
     jupyterlab_code_formatter autopep8 black \
     webio_jupyter_extension \
+    webio-jupyterlab-provider \
     && \
     echo Done
 
@@ -86,6 +87,7 @@ RUN jupyter labextension install jupyterlab-topbar-extension && \
     jupyter serverextension enable --py jupyterlab_code_formatter && \
     jupyter labextension install @hokyjack/jupyterlab-monokai-plus --no-build && \
     jupyter labextension install @jupyterlab/server-proxy --no-build && \
+    jupyter labextension install jupyterlab-plotly --no-build && \
     jupyter lab build -y && \
     jupyter lab clean -y && \
     npm cache clean --force && \
@@ -120,12 +122,14 @@ RUN mkdir -p ${HOME}/.julia/config && \
     ENV["JUPYTER"]=Sys.which("jupyter")\n\
     ' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
 
-RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI"])'
-RUN julia -e '\
+RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI", "WebIO"])'
+RUN julia --threads auto -e '\
     using Pkg; \
+    using Base.Threads; \
     Pkg.add("IJulia"); \
     using IJulia; \
-    installkernel("Julia");\
+    installkernel("julia");\
+    installkernel("julia-$(nthreads())-threads", env=Dict("JULIA_NUM_THREADS"=>"$(nthreads())")); \
     ' && \
     echo "Done"
 
