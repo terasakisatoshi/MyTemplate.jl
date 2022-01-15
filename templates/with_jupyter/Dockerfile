@@ -79,7 +79,6 @@ RUN pip3 install jupyter-resource-usage && \
 # Install/enable extension for JupyterLab users
 RUN jupyter labextension install jupyterlab-topbar-extension && \
     jupyter labextension install jupyterlab-system-monitor && \
-    #jupyter labextension install @lckr/jupyterlab_variableinspector --no-build && \
     jupyter nbextension enable --py widgetsnbextension && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build && \
     jupyter labextension install @z-m-k/jupyterlab_sublime --no-build && \
@@ -105,7 +104,7 @@ RUN mkdir -p ${HOME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension &
     ${HOME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings
 
 RUN mkdir -p ${HOME}/.jupyter/lab/user-settings/@jupyterlab/notebook-extension && \
-    echo '{"codeCellConfig": {"lineNumbers": true}}' \
+    echo '{"codeCellConfig": {"lineNumbers": true, "fontFamily": "JuliaMono"}}' \
     >> ${HOME}/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/tracker.jupyterlab-settings
 
 RUN mkdir -p ${HOME}/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension && \
