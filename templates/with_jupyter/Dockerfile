@@ -132,10 +132,7 @@ RUN julia -e '\
 ENV JULIA_PROJECT "@."
 WORKDIR /workspace/{{{PKG}}}.jl
 
-COPY ./playground/notebook /workspace/{{{PKG}}}.jl
-COPY ./playground/pluto /workspace/{{{PKG}}}.jl
-COPY ./docs/Project.toml /workspace/{{{PKG}}}.jl/docs
-COPY ./src /workspace/{{{PKG}}}.jl/src
+RUN mkdir -p /workspace/{{{PKG}}}.jl/src && echo "module ML3D end" > /workspace/{{{PKG}}}.jl/src/{{{PKG}}}.jl
 COPY ./Project.toml /workspace/{{{PKG}}}.jl
 
 ENV PATH=${PATH}:${HOME}/.local/bin
