@@ -136,7 +136,11 @@ RUN julia --threads auto -e '\
 ENV JULIA_PROJECT "@."
 WORKDIR /workspace/{{{PKG}}}.jl
 
-RUN mkdir -p /workspace/{{{PKG}}}.jl/src && echo "module ML3D end" > /workspace/{{{PKG}}}.jl/src/{{{PKG}}}.jl
+USER root
+RUN chown -R ${NB_UID} /workspace/{{{PKG}}}.jl
+USER ${USER}
+
+RUN mkdir -p /workspace/{{{PKG}}}.jl/src && echo "module {{{PKG}}} end" > /workspace/{{{PKG}}}.jl/src/{{{PKG}}}.jl
 COPY ./Project.toml /workspace/{{{PKG}}}.jl
 
 ENV PATH=${PATH}:${HOME}/.local/bin
