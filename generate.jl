@@ -7,7 +7,7 @@ include("myplugins.jl")
 
 t_with_jupyter = Template(;
     dir = pwd(),
-    julia = v"1",
+    julia = v"1.6",
     plugins = [
         License(; name = "MIT"),
         Git(;
