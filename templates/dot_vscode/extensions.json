@@ -2,6 +2,7 @@
     "recommendations": [
         "ms-vscode-remote.vscode-remote-extensionpack",
         "julialang.language-julia",
-        "bungcip.better-toml"
+        "bungcip.better-toml",
+	"congyiwu.vscode-jupytext",
     ]
 }

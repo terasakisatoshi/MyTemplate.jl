@@ -22,6 +22,7 @@ RUN apt-get update && \
     curl \
     ca-certificates \
     git \
+    wget \
     zip \
     && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
@@ -38,7 +39,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 
 # install NodeJS
 RUN apt-get update && \
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
 
@@ -54,10 +55,8 @@ RUN curl -kL https://bootstrap.pypa.io/get-pip.py | python3 && \
     jupyter-server-proxy \
     nbconvert \
     ipykernel \
-    isort \
-    black \
     git+https://github.com/IllumiDesk/jupyter-pluto-proxy.git \
-    jupyterlab_code_formatter autopep8 black \
+    jupyterlab_code_formatter autopep8 isort black \
     webio_jupyter_extension \
     webio-jupyterlab-provider \
     && \
