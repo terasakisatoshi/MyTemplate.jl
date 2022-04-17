@@ -30,6 +30,7 @@
     "eamodio.gitlens",
     "bungcip.better-toml",
     "usernamehw.errorlens",
-    "ms-vscode.live-server"
+    "ms-vscode.live-server",
+    "congyiwu.vscode-jupytext",
   ]
 }
