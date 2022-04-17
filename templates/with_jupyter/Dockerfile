@@ -22,6 +22,7 @@ RUN apt-get update && \
     curl \
     ca-certificates \
     git \
+    wget \
     zip \
     && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
