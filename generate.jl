@@ -37,8 +37,8 @@ t_with_jupyter = Template(;
         DockerCompose(with_jupyter = true),
         Makefile(),
         DevContainer(),
-        Jupytext(),
-        PlaygroundNotebook(),
+        Jupytext(:julia),
+        Jupytext(:python),
         PlaygroundPluto(),
         VSCodeExtensions(),
     ]
