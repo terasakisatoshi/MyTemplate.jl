@@ -6,7 +6,7 @@ all: build
 
 build:
 	-rm -f Manifest.toml docs/Manifest.toml
-	docker build -t ${DOCKER_IMAGE} .
+	docker build -t ${DOCKER_IMAGE} . --build-arg NB_UID=`id -u`
 	docker-compose build
 	docker-compose run --rm julia julia --project=@. -e 'using Pkg; Pkg.instantiate()'
 	docker-compose run --rm julia julia --project=docs -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
