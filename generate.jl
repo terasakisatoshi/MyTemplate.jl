@@ -23,7 +23,7 @@ t_with_jupyter = Template(;
             ssh = true
         ),
         GitHubActions(;
-            extra_versions = ["1.6", "1.7", "nightly"]
+            extra_versions = ["1.6", "1.8", "nightly"]
         ),
         Documenter{GitHubActions}(),
         Readme(;
