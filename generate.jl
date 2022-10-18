@@ -39,6 +39,7 @@ t_with_jupyter = Template(;
         DevContainer(),
         Jupytext(:julia),
         Jupytext(:python),
+        JuliaFormatter(),
         PlaygroundPluto(),
         VSCodeExtensions(),
     ]
@@ -73,6 +74,7 @@ t = Template(;
         Dockerfile(with_jupyter = false),
         DockerCompose(with_jupyter = false),
         Makefile(),
+        JuliaFormatter(),
         DevContainer(),
         VSCodeExtensions(),
     ]

@@ -32,7 +32,7 @@ destination(p::PlaygroundPluto) = p.destination
 # ---
 
 Base.@kwdef struct JuliaFormatter <: FilePlugin
-    file::String = "templates/.JuliaFormatter.toml"
+    file::String = "templates/dot_JuliaFormatter.toml"
     destination::String = ".JuliaFormatter.toml"
 end
 
