@@ -7,7 +7,7 @@ include("myplugins.jl")
 
 t_with_jupyter = Template(;
     dir = pwd(),
-    julia = v"1.6",
+    julia = v"1.6.2",
     plugins = [
         License(; name = "MIT"),
         Git(;
@@ -20,18 +20,13 @@ t_with_jupyter = Template(;
                 ".DS_Store",
             ],
             manifest = false,
-            ssh = true
+            ssh = true,
         ),
-        GitHubActions(;
-            extra_versions = ["1.6", "1.8", "nightly"]
-        ),
+        GitHubActions(; extra_versions = ["1.6", "1.8", "nightly"]),
         Documenter{GitHubActions}(),
         Readme(;
             inline_badges = true,
-            badge_order = DataType[
-                GitHubActions,
-                Documenter{GitHubActions},
-            ]
+            badge_order = DataType[GitHubActions, Documenter{GitHubActions}],
         ),
         Dockerfile(with_jupyter = true),
         DockerCompose(with_jupyter = true),
@@ -42,12 +37,12 @@ t_with_jupyter = Template(;
         JuliaFormatter(),
         PlaygroundPluto(),
         VSCodeExtensions(),
-    ]
+    ],
 )
 
 t = Template(;
     dir = pwd(),
-    julia = v"1.6",
+    julia = v"1.6.2",
     plugins = [
         License(; name = "MIT"),
         Git(;
@@ -59,17 +54,14 @@ t = Template(;
                 "*.gif",
                 ".DS_Store",
             ],
-            manifest = false, ssh = true),
-        GitHubActions(;
-            extra_versions = ["1.6", "1.7", "nightly"]
+            manifest = false,
+            ssh = true,
         ),
+        GitHubActions(; extra_versions = ["1.6", "1.8", "nightly"]),
         Documenter{GitHubActions}(),
         Readme(;
             inline_badges = true,
-            badge_order = DataType[
-                GitHubActions,
-                Documenter{GitHubActions},
-            ]
+            badge_order = DataType[GitHubActions, Documenter{GitHubActions}],
         ),
         Dockerfile(with_jupyter = false),
         DockerCompose(with_jupyter = false),
@@ -77,7 +69,7 @@ t = Template(;
         JuliaFormatter(),
         DevContainer(),
         VSCodeExtensions(),
-    ]
+    ],
 )
 
 function main()

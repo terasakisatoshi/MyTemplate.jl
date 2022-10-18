@@ -6,7 +6,7 @@ struct Dockerfile <: FilePlugin
     tag::String
     file::String
     destination::String
-    function Dockerfile(; tag=string(VERSION), with_jupyter=false)
+    function Dockerfile(; tag = string(VERSION), with_jupyter = false)
         if with_jupyter
             new(tag, joinpath("templates", "with_jupyter", "Dockerfile"), "Dockerfile")
         else
@@ -60,14 +60,9 @@ for lang in ("julia", "python", "r")
             "playground",
             "notebook",
             $lang,
-            "jupytext.toml"
-        )
-        destination = joinpath(
-            "playground",
-            "notebook",
-            $lang,
             "jupytext.toml",
         )
+        destination = joinpath("playground", "notebook", $lang, "jupytext.toml")
         Jupytext{Symbol($lang)}(; file, destination)
     end
 end
@@ -93,9 +88,12 @@ destination(p::DevContainer) = p.destination
 struct DockerCompose <: FilePlugin
     file::String
     destination::String
-    function DockerCompose(; with_jupyter=false)
+    function DockerCompose(; with_jupyter = false)
         if with_jupyter
-            new(joinpath("templates", "with_jupyter", "docker-compose.yml"), "docker-compose.yml")
+            new(
+                joinpath("templates", "with_jupyter", "docker-compose.yml"),
+                "docker-compose.yml",
+            )
         else
             new(joinpath("templates", "docker-compose.yml"), "docker-compose.yml")
         end
@@ -104,7 +102,8 @@ end
 
 source(p::DockerCompose) = p.file
 destination(p::DockerCompose) = p.destination
-view(::DockerCompose, ::Template, pkg::AbstractString) = Dict("DOCKER_IMAGE" => lowercase(pkg) * "jl", "PKG" => pkg)
+view(::DockerCompose, ::Template, pkg::AbstractString) =
+    Dict("DOCKER_IMAGE" => lowercase(pkg) * "jl", "PKG" => pkg)
 
 # ---
 
@@ -115,7 +114,8 @@ end
 
 source(p::Makefile) = p.file
 destination(p::Makefile) = p.destination
-view(::Makefile, ::Template, pkg::AbstractString) = Dict("DOCKER_IMAGE" => lowercase(pkg) * "jl")
+view(::Makefile, ::Template, pkg::AbstractString) =
+    Dict("DOCKER_IMAGE" => lowercase(pkg) * "jl")
 
 # ---
 
