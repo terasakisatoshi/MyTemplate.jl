@@ -127,6 +127,14 @@ RUN mkdir -p ${HOME}/.julia/config && \
 
 RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI", "WebIO"])' && \
     julia -e 'using Pkg; Pkg.add(["BenchmarkTools", "ProfileSVG", "JET", "JuliaFormatter"])'
+
+# Launch Revise automatically within IJulia
+# https://timholy.github.io/Revise.jl/stable/config/#Using-Revise-automatically-within-Jupyter/IJulia-1
+RUN mkdir -p ${HOME}/.julia/config && \
+    echo '\
+    try; @eval using Revise; catch e; @warn "Error initializing Revise" exception=(e, catch_backtrace()); end \n\
+    ' >> ${HOME}/.julia/config/startup_ijulia.jl && cat ${HOME}/.julia/config/startup_ijulia.jl
+
 RUN julia --threads auto -e '\
     using Pkg; \
     using Base.Threads; \
