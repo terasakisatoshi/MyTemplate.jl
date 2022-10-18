@@ -125,7 +125,8 @@ RUN mkdir -p ${HOME}/.julia/config && \
     ENV["JUPYTER"]=Sys.which("jupyter")\n\
     ' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
 
-RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI", "WebIO"])'
+RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI", "WebIO"])' && \
+    julia -e 'using Pkg; Pkg.add(["BenchmarkTools", "ProfileSVG", "JET", "JuliaFormatter"])'
 RUN julia --threads auto -e '\
     using Pkg; \
     using Base.Threads; \
