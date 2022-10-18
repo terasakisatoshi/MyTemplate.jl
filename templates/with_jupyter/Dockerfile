@@ -111,6 +111,10 @@ RUN mkdir -p ${HOME}/.jupyter/lab/user-settings/@jupyterlab/notebook-extension &
 RUN mkdir -p ${HOME}/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension && \
     echo '{"shortcuts": [{"command": "runmenu:restart-and-run-all", "keys": ["Alt R"], "selector": "[data-jp-code-runner]"}]}' \
     >> ${HOME}/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings
+
+# Modify defaultViewers
+RUN wget https://raw.githubusercontent.com/mwouts/jupytext/main/binder/labconfig/default_setting_overrides.json -P  ~/.jupyter/labconfig/
+
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
@@ -121,14 +125,15 @@ RUN mkdir -p ${HOME}/.julia/config && \
     ENV["JUPYTER"]=Sys.which("jupyter")\n\
     ' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
 
-RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI", "WebIO"])'
+RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI", "WebIO"])' && \
+    julia -e 'using Pkg; Pkg.add(["BenchmarkTools", "ProfileSVG", "JET", "JuliaFormatter"])'
 RUN julia --threads auto -e '\
     using Pkg; \
     using Base.Threads; \
     Pkg.add("IJulia"); \
     using IJulia; \
-    installkernel("julia");\
-    installkernel("julia-$(nthreads())-threads", env=Dict("JULIA_NUM_THREADS"=>"$(nthreads())")); \
+    installkernel("Julia", "--project=@.");\
+    installkernel("Julia-$(nthreads())-threads", "--project=@.", env=Dict("JULIA_NUM_THREADS"=>"$(nthreads())")); \
     ' && \
     echo "Done"
 
