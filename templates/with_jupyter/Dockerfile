@@ -127,8 +127,8 @@ RUN julia --threads auto -e '\
     using Base.Threads; \
     Pkg.add("IJulia"); \
     using IJulia; \
-    installkernel("julia");\
-    installkernel("julia-$(nthreads())-threads", env=Dict("JULIA_NUM_THREADS"=>"$(nthreads())")); \
+    installkernel("Julia", "--project=@.");\
+    installkernel("Julia-$(nthreads())-threads", "--project=@.", env=Dict("JULIA_NUM_THREADS"=>"$(nthreads())")); \
     ' && \
     echo "Done"
 
