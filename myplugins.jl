@@ -31,6 +31,16 @@ destination(p::PlaygroundPluto) = p.destination
 
 # ---
 
+Base.@kwdef struct JuliaFormatter <: FilePlugin
+    file::String = "templates/.JuliaFormatter.toml"
+    destination::String = ".JuliaFormatter.toml"
+end
+
+source(p::JuliaFormatter) = p.file
+destination(p::JuliaFormatter) = p.destination
+
+# ---
+
 Base.@kwdef struct Jupytext{T} <: FilePlugin
     file::String
     destination::String
