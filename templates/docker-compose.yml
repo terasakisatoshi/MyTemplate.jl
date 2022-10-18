@@ -7,6 +7,15 @@ services:
       - ./:/workspace/{{{PKG}}}.jl
     working_dir: /workspace/{{{PKG}}}.jl
     command: julia --project=/workspace/{{{PKG}}}.jl
+
+  shell:
+    image: {{DOCKER_IMAGE}}
+    container_name: {{DOCKER_IMAGE}}-julia
+    volumes:
+      - ./:/workspace/{{{PKG}}}.jl
+    working_dir: /workspace/{{{PKG}}}.jl
+    command: /bin/bash
+
   web:
     image: {{DOCKER_IMAGE}}
     container_name: {{DOCKER_IMAGE}}-packagedocs
