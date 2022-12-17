@@ -3,6 +3,6 @@
         "ms-vscode-remote.vscode-remote-extensionpack",
         "julialang.language-julia",
         "bungcip.better-toml",
-	"congyiwu.vscode-jupytext",
+        "donjayamanne.vscode-jupytext",
     ]
 }
