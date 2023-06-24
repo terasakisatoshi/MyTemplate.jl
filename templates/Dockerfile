@@ -35,7 +35,7 @@ USER ${USER}
 WORKDIR /workspace/{{{PKG}}}.jl
 
 RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI"])' && \
-    julia -e 'using Pkg; Pkg.add(["BenchmarkTools", "ProfileSVG", "JET", "JuliaFormatter"])'
+    julia -e 'using Pkg; Pkg.add(["BenchmarkTools", "ProfileSVG", "JET", "Cthulhu", "JuliaFormatter"])'
 
 
 ENV JULIA_PROJECT "@."

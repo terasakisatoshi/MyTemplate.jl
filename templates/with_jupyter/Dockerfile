@@ -122,7 +122,7 @@ RUN mkdir -p ${HOME}/.julia/config && \
     ' >> ${HOME}/.julia/config/startup.jl && cat ${HOME}/.julia/config/startup.jl
 
 RUN julia -e 'using Pkg; Pkg.add(["Revise", "LiveServer", "Pluto", "PlutoUI", "WebIO"])' && \
-    julia -e 'using Pkg; Pkg.add(["BenchmarkTools", "ProfileSVG", "JET", "JuliaFormatter"])'
+    julia -e 'using Pkg; Pkg.add(["BenchmarkTools", "ProfileSVG", "JET", "Cthulhu", "JuliaFormatter"])'
 
 # Launch Revise automatically within IJulia
 # https://timholy.github.io/Revise.jl/stable/config/#Using-Revise-automatically-within-Jupyter/IJulia-1
