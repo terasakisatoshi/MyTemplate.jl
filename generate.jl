@@ -92,9 +92,6 @@ function main()
     else
         t(pkgname)
     end
-    nojl = split(pkgname, ".jl")[begin]
-    @info "Rename $nojl => $pkgname"
-    mv(nojl, pkgname)
 end
 
 main()
