@@ -50,6 +50,7 @@ t = Template(;
             ignore = [
                 "docs/build/",
                 "docs/site/",
+                ".CondaPkg",
                 #".ipynb_checkpoints",
                 #"*.ipynb",
                 "*.gif",
