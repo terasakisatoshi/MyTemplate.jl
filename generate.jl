@@ -23,7 +23,7 @@ t_with_jupyter = Template(;
             manifest = false,
             ssh = true,
         ),
-        GitHubActions(; extra_versions = ["1.6", "1.8", "nightly"]),
+        GitHubActions(; extra_versions = ["1.6", "1", "nightly"]),
         Documenter{GitHubActions}(),
         Readme(;
             inline_badges = true,
@@ -59,7 +59,7 @@ t = Template(;
             manifest = false,
             ssh = true,
         ),
-        GitHubActions(; extra_versions = ["1.6", "1.8", "nightly"]),
+        GitHubActions(; extra_versions = ["1.6", "1", "nightly"]),
         Documenter{GitHubActions}(),
         Readme(;
             inline_badges = true,
